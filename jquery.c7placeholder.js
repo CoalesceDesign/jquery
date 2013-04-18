@@ -1,6 +1,6 @@
 /*
  *
- * C7D Placeholder
+ * C7Placeholder
  * Version 1.0
  * @requires jQuery v1.6.2
  *
@@ -26,6 +26,8 @@
 				} else {
 					var pText = $(this).attr('placeholder');
 				}
+
+				$(this).attr('data-c7placeholder', pText);
 
 				$(this).focus(function() {
 					var input = $(this);
@@ -67,9 +69,8 @@
 
 				}).blur().parents('form').submit(function() {
 					$(this).find('[placeholder]').each(function() {
-						var input = $(this);
-						if (input.val() == pText) {
-							input.val('');
+						if ($(this).val() === $(this).data('c7placeholder')) {
+							$(this).val('');
 						}
 					})
 				});
